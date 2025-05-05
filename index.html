@@ -33,51 +33,54 @@
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mejorada */
         }
         /* Estilo para los grupos de formulario */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* Aumenta el espacio entre grupos */
         }
         /* Estilo para las etiquetas */
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px; /* Aumenta el espacio debajo de la etiqueta */
             font-weight: bold;
+            color: #555; /* Color de etiqueta ligeramente más oscuro */
         }
         /* Estilo para los select y input de texto */
         select, input[type="text"], textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px; /* Aumenta el padding */
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+            font-size: 16px; /* Tamaño de fuente legible */
         }
         /* Estilo para el área de texto de prompt */
         #generatedPrompt {
             width: 100%;
             height: 200px;
-            padding: 10px;
+            padding: 15px; /* Aumenta el padding */
             border: 1px solid #ccc;
             border-radius: 4px;
             background-color: #e9e9e9;
-            margin-top: 10px; /* Ajusta el margen superior */
+            margin-top: 15px; /* Ajusta el margen superior */
             font-family: monospace; /* Fuente monoespaciada para el prompt */
             white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
             word-wrap: break-word; /* Rompe palabras largas si es necesario */
             resize: vertical; /* Permite redimensionar verticalmente */
+            font-size: 14px; /* Tamaño de fuente para el prompt */
         }
         /* Estilo para el botón */
         button {
             background-color: #007bff;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px; /* Aumenta el padding */
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s ease;
-            margin-top: 10px; /* Añade margen superior al botón */
+            margin-top: 15px; /* Añade margen superior al botón */
         }
         button:hover {
             background-color: #0056b3;
@@ -98,82 +101,183 @@
 </head>
 <body class="p-4">
     <div class="container">
-        <h1 class="text-2xl font-bold mb-6 text-center">Generador de Prompts para Diseño de Poleras</h1>
+        <h1 class="text-2xl font-bold mb-8 text-center">Generador de Prompts para Diseño de Poleras</h1>
 
         <div class="form-group">
             <label for="conceptoMensaje">1. Concepto del Diseño: Mensaje o idea central</label>
-            <textarea id="conceptoMensaje" rows="3" placeholder="Ej: La importancia del reciclaje, Amor por la naturaleza"></textarea>
+            <textarea id="conceptoMensaje" rows="3" placeholder="Ej: La importancia del reciclaje, Amor por la naturaleza" class="w-full p-2 border rounded"></textarea>
         </div>
         <div class="form-group">
             <label for="conceptoEmocion">Emoción a evocar</label>
-            <select id="conceptoEmocion" onchange="toggleCustomInput('conceptoEmocion', 'conceptoEmocionCustom')">
-                <option value="">Selecciona una emoción</option>
-                <option value="alegría">Alegría</option>
-                <option value="rebeldía">Rebeldía</option>
-                <option value="nostalgia">Nostalgia</option>
-                <option value="motivación">Motivación</option>
-                <option value="calma">Calma</option>
-                <option value="energía">Energía</option>
-                <option value="otro">Otro/Personalizado</option>
+            <select id="conceptoEmocion" onchange="toggleCustomInput('conceptoEmocion', 'conceptoEmocionCustom')" class="w-full p-2 border rounded">
+    <option value="">Selecciona una emoción</option>
+    <option value="alegría y diversión">Alegría y diversión</option>
+    <option value="rebeldía y actitud">Rebeldía y actitud</option>
+    <option value="nostalgia y vintage">Nostalgia y vintage</option>
+    <option value="motivación e inspiración">Motivación e inspiración</option>
+    <option value="calma y serenidad">Calma y serenidad</option>
+    <option value="energía y dinamismo">Energía y dinamismo</option>
+    <option value="misterio e intriga">Misterio e intriga</option>
+    <option value="empoderamiento">Empoderamiento</option>
+    <option value="humor y sarcasmo">Humor y sarcasmo</option>
+    <option value="amor y conexión">Amor y conexión</option>
+    <option value="aventura y exploración">Aventura y exploración</option>
+    <option value="lujo y exclusividad">Lujo y exclusividad</option>
+    <option value="sostenibilidad y ecología">Sostenibilidad y ecología</option>
+    <option value="tecnología y futurismo">Tecnología y futurismo</option>
+    <option value="arte y creatividad">Arte y creatividad</option>
+    <option value="deporte y actividad">Deporte y actividad</option>
+    <option value="cultura pop">Cultura pop</option>
+    <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="conceptoEmocionCustom" class="hidden mt-2" placeholder="Especifica la emoción">
+            <input type="text" id="conceptoEmocionCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica la emoción">
         </div>
 
         <div class="form-group">
             <label for="publicoObjetivo">2. Público Objetivo: Describe a quién va dirigido el diseño (edad, intereses, estilo de vida, etc.)</label>
-            <textarea id="publicoObjetivo" rows="3" placeholder="Ej: Jóvenes entre 18 y 25 años, interesados en videojuegos retro y cultura pop, estilo urbano"></textarea>
+            <textarea id="publicoObjetivo" rows="3" placeholder="Ej: Jóvenes entre 18 y 25 años, interesados en videojuegos retro y cultura pop, estilo urbano" class="w-full p-2 border rounded"></textarea>
         </div>
 
         <div class="form-group">
             <label for="estiloGeneral">3. Estilo Visual: Estilo general</label>
-            <select id="estiloGeneral" onchange="toggleCustomInput('estiloGeneral', 'estiloGeneralCustom')">
-                <option value="">Selecciona un estilo</option>
-                <option value="minimalista">Minimalista</option>
-                <option value="retro">Retro</option>
-                <option value="maximalista">Maximalista</option>
-                <option value="arte digital">Arte Digital</option>
-                <option value="geocultural">Geocultural</option>
-                <option value="ilustración">Ilustración</option>
-                <option value="tipográfico">Tipográfico</option>
-                <option value="otro">Otro/Personalizado</option>
+            <select id="estiloGeneral" onchange="toggleCustomInput('estiloGeneral', 'estiloGeneralCustom')" class="w-full p-2 border rounded">
+    <option value="">Selecciona un estilo</option>
+    <option value="minimalista y limpio">Minimalista y limpio</option>
+    <option value="retro y vintage">Retro y vintage</option>
+    <option value="maximalista y detallado">Maximalista y detallado</option>
+    <option value="arte digital ilustrado">Arte digital ilustrado</option>
+    <option value="geométrico y abstracto">Geométrico y abstracto</option>
+    <option value="grunge y texturizado">Grunge y texturizado</option>
+    <option value="tipográfico y de letras">Tipográfico y de letras</option>
+    <option value="comic y cartoon">Comic y cartoon</option>
+    <option value="cyberpunk y futurista">Cyberpunk y futurista</option>
+    <option value="kawaii y cute">Kawaii y cute</option>
+    <option value="streetwear y urbano">Streetwear y urbano</option>
+    <option value="boho y hippie">Boho y hippie</option>
+    <option value="skate y surf">Skate y surf</option>
+    <option value="gótico y oscuro">Gótico y oscuro</option>
+    <option value="anime y manga">Anime y manga</option>
+    <option value="pixel art">Pixel art</option>
+    <option value="collage y mixto">Collage y mixto</option>
+    <option value="realista y detallado">Realista y detallado</option>
+    <option value="low poly">Low poly</option>
+    <option value="doodle y garabatos">Doodle y garabatos</option>
+    <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="estiloGeneralCustom" class="hidden mt-2" placeholder="Especifica el estilo general">
+            <input type="text" id="estiloGeneralCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica el estilo general">
         </div>
         <div class="form-group">
             <label for="estiloElementos">Elementos a incluir (ilustraciones, frases, logotipos, símbolos, etc.)</label>
-            <input type="text" id="estiloElementos" placeholder="Ej: Una ilustración de un gato espacial, la frase 'Explora lo desconocido', un logo pequeño">
+            <input type="text" id="estiloElementos" placeholder="Ej: Una ilustración de un gato espacial, la frase 'Explora lo desconocido', un logo pequeño" class="w-full p-2 border rounded">
         </div>
          <div class="form-group">
             <label for="estiloTendencia">Tendencia específica del 2025 (si aplica)</label>
-            <input type="text" id="estiloTendencia" placeholder="Ej: Estilo 'Cyberpunk Revival', uso de gradientes iridiscentes">
+            <input type="text" id="estiloTendencia" placeholder="Ej: Estilo 'Cyberpunk Revival', uso de gradientes iridiscentes" class="w-full p-2 border rounded">
         </div>
 
         <div class="form-group">
             <label for="coloresUsar">4. Colores: Colores a usar (nombra los colores o describe la paleta)</label>
-            <input type="text" id="coloresUsar" placeholder="Ej: Paleta de colores tierra (beige, marrón, verde oliva), Azul eléctrico y rosa neón">
+             <select id="coloresUsar" onchange="toggleCustomInput('coloresUsar', 'coloresUsarCustom')" class="w-full p-2 border rounded">
+    <option value="">Selecciona una paleta de colores o especifica</option>
+    <!-- Paletas básicas -->
+    <option value="Monocromática (variaciones de un solo tono)">Monocromática</option>
+    <option value="Complementaria (colores opuestos en la rueda)">Complementaria</option>
+    <option value="Análoga (colores vecinos en la rueda)">Análoga</option>
+    <option value="Triádica (tres colores equidistantes)">Triádica</option>
+    
+    <!-- Paletas por estilo -->
+    <option value="Neón (fucsia, cian, amarillo neón)">Neón</option>
+    <option value="Pastel (rosa, azul, menta, lila suaves)">Pastel</option>
+    <option value="Tierra (ocre, beige, verde oliva, marrón)">Tierra</option>
+    <option value="Primarios (rojo, azul, amarillo vibrantes)">Primarios</option>
+    <option value="Metálicos (oro, plata, bronce, cobre)">Metálicos</option>
+    <option value="Grises (escala de grises con un acento de color)">Grises con acento</option>
+    
+    <!-- Paletas por tendencia -->
+    <option value="Cyber (morado eléctrico, rosa neón, azul cian)">Cyber</option>
+    <option value="Y2K (rosa brillante, azul cielo, plateado)">Y2K</option>
+    <option value="Dark mode (negro, gris oscuro, con toques neón)">Dark mode</option>
+    <option value="Vaporwave (rosa, morado, azul pastel)">Vaporwave</option>
+    <option value="Retro (mostaza, marrón, naranja quemado)">Retro 70s</option>
+    <option value="Acid (amarillo ácido, verde lima, fucsia)">Acid</option>
+    
+    <!-- Paletas por emoción -->
+    <option value="Energía (rojo, naranja, amarillo vibrantes)">Energía</option>
+    <option value="Calma (azules, verdes suaves, lavanda)">Calma</option>
+    <option value="Lujo (negro, oro, blanco roto)">Lujo</option>
+    <option value="Naturaleza (verdes, marrones, azul cielo)">Naturaleza</option>
+    <option value="Futurista (plateado, morado, azul eléctrico)">Futurista</option>
+    <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="coloresUsarCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica los colores (ej: Azul eléctrico y rosa neón)">
         </div>
         <div class="form-group">
             <label for="coloresEmociones">Emociones o sensaciones que deberían transmitir los colores</label>
-            <input type="text" id="coloresEmociones" placeholder="Ej: Calma y conexión con la naturaleza, Energía y modernidad">
+             <select id="coloresEmociones" onchange="toggleCustomInput('coloresEmociones', 'coloresEmocionesCustom')" class="w-full p-2 border rounded">
+    <option value="">Selecciona una emoción o especifica</option>
+    <option value="Alegría y optimismo (amarillos, naranjas)">Alegría y optimismo</option>
+    <option value="Calma y serenidad (azules, verdes suaves)">Calma y serenidad</option>
+    <option value="Energía y pasión (rojos, naranjas intensos)">Energía y pasión</option>
+    <option value="Misterio e intriga (morados, negros)">Misterio e intriga</option>
+    <option value="Elegancia y sofisticación (negro, blanco, dorado)">Elegancia y sofisticación</option>
+    <option value="Naturaleza y frescura (verdes, marrones)">Naturaleza y frescura</option>
+    <option value="Rebeldía y audacia (neones, contrastes fuertes)">Rebeldía y audacia</option>
+    <option value="Confianza y estabilidad (azules profundos)">Confianza y estabilidad</option>
+    <option value="Creatividad e innovación (combinaciones inusuales)">Creatividad e innovación</option>
+    <option value="Diversión y juventud (colores brillantes)">Diversión y juventud</option>
+    <option value="Lujo y exclusividad (metálicos, tonos profundos)">Lujo y exclusividad</option>
+    <option value="Nostalgia y retro (tonos sepia, desaturados)">Nostalgia y retro</option>
+    <option value="Futurismo y tecnología (azules eléctricos, plateados)">Futurismo y tecnología</option>
+    <option value="Romance y delicadeza (rosas, pasteles)">Romance y delicadeza</option>
+    <option value="Poder y fuerza (rojos, negros)">Poder y fuerza</option>
+    <option value="Ecología y sostenibilidad (verdes, marrones)">Ecología y sostenibilidad</option>
+    <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="coloresEmocionesCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica las emociones (ej: Nostalgia y confort)">
         </div>
 
         <div class="form-group">
             <label for="tipografiaTipo">5. Tipografía: Tipo de fuente o combinación</label>
-            <select id="tipografiaTipo" onchange="toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom')">
-                <option value="">Selecciona un tipo de fuente</option>
-                <option value="formal">Formal (Serif/Sans-serif clásica)</option>
-                <option value="divertida">Divertida (Handwritten/Display)</option>
-                <option value="retro">Retro (Vintage/Script)</option>
-                <option value="manuscrita">Manuscrita</option>
-                <option value="moderna">Moderna (Geometric/Minimal)</option>
-                <option value="otro">Otro/Personalizado</option>
+            <select id="tipografiaTipo" onchange="toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom')" class="w-full p-2 border rounded">
+    <option value="">Selecciona un tipo de fuente</option>
+    <!-- Estilos clásicos -->
+    <option value="Serif elegante (Times, Garamond, Georgia)">Serif elegante</option>
+    <option value="Sans-serif limpia (Helvetica, Arial, Futura)">Sans-serif limpia</option>
+    
+    <!-- Estilos modernos -->
+    <option value="Moderno geométrico (Montserrat, Gotham)">Moderno geométrico</option>
+    <option value="Minimalista (Roboto, Open Sans)">Minimalista</option>
+    
+    <!-- Estilos display -->
+    <option value="Bold display (Impact, Bebas Neue)">Bold display</option>
+    <option value="Retro vintage (Cooper Black, Playbill)">Retro vintage</option>
+    <option value="Futurista (Eurostile, Orbitron)">Futurista</option>
+    
+    <!-- Estilos manuscritos -->
+    <option value="Manuscrita elegante (Brush Script, Pacifico)">Manuscrita elegante</option>
+    <option value="Handwritten casual (Comic Sans, Marker Felt)">Handwritten casual</option>
+    <option value="Caligráfica (Edwardian Script, Zapfino)">Caligráfica</option>
+    
+    <!-- Estilos temáticos -->
+    <option value="Gótico (Old English, Blackletter)">Gótico</option>
+    <option value="Grunge (distressed, texturizada)">Grunge</option>
+    <option value="Sci-fi (tecnológica, angular)">Sci-fi</option>
+    <option value="Comic/Manga (anime, comic book)">Comic/Manga</option>
+    <option value="Street art (grafiti, tags)">Street art</option>
+    <option value="Pixel art (8-bit, retro gaming)">Pixel art</option>
+    
+    <!-- Combinaciones -->
+    <option value="Combinación serif + sans-serif">Combinación clásica</option>
+    <option value="Contraste display + manuscrita">Contraste moderno</option>
+    <option value="Mezcla de estilos para collage">Estilo collage</option>
+    <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="tipografiaTipoCustom" class="hidden mt-2" placeholder="Especifica el tipo o combinación de fuente">
+            <input type="text" id="tipografiaTipoCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica el tipo o combinación de fuente">
         </div>
 
         <div class="form-group">
             <label for="tecnicaImpresion">6. Técnica de Impresión: Técnica que se usará</label>
-            <select id="tecnicaImpresion" onchange="toggleCustomInput('tecnicaImpresion', 'tecnicaImpresionCustom')">
+            <select id="tecnicaImpresion" onchange="toggleCustomInput('tecnicaImpresion', 'tecnicaImpresionCustom')" class="w-full p-2 border rounded">
                 <option value="">Selecciona una técnica</option>
                 <option value="DTG">DTG (Impresión Directa a Prenda)</option>
                 <option value="serigrafía">Serigrafía</option>
@@ -182,29 +286,12 @@
                 <option value="bordado">Bordado</option>
                 <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="tecnicaImpresionCustom" class="hidden mt-2" placeholder="Especifica la técnica de impresión">
-        </div>
-        <div class="form-group">
-            <label for="tecnicaPolera">Tipo de polera (material, color base, textura)</label>
-            <input type="text" id="tecnicaPolera" placeholder="Ej: Polera 100% algodón, color blanco, textura suave; Polera de poliéster, color gris melange">
+            <input type="text" id="tecnicaImpresionCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica la técnica de impresión">
         </div>
 
         <div class="form-group">
-            <label for="formatoArchivo">7. Formato del Archivo: Formato final requerido</label>
-            <select id="formatoArchivo" onchange="toggleCustomInput('formatoArchivo', 'formatoArchivoCustom')">
-                <option value="">Selecciona un formato</option>
-                <option value=".ai">.ai (Adobe Illustrator)</option>
-                <option value=".psd">.psd (Adobe Photoshop)</option>
-                <option value=".png">.png (con transparencia)</option>
-                <option value=".jpg">.jpg (sin transparencia)</option>
-                <option value=".svg">.svg (Gráficos Vectoriales Escalables)</option>
-                <option value="otro">Otro/Personalizado</option>
-            </select>
-            <input type="text" id="formatoArchivoCustom" class="hidden mt-2" placeholder="Especifica el formato de archivo">
-        </div>
-        <div class="form-group">
-            <label for="formatoTamano">Tamaño y resolución requerida</label>
-            <select id="formatoTamano" onchange="toggleCustomInput('formatoTamano', 'formatoTamanoCustom')">
+            <label for="formatoTamano">7. Tamaño y resolución requerida</label>
+            <select id="formatoTamano" onchange="toggleCustomInput('formatoTamano', 'formatoTamanoCustom')" class="w-full p-2 border rounded">
                  <option value="">Selecciona un tamaño o especifica</option>
                  <option value="300 DPI a tamaño completo (aprox. 30x40 cm para polera frontal)">Polera (Frontal/Espalda) - 300 DPI, 30x40 cm</option>
                  <option value="300 DPI a tamaño completo (aprox. 10x10 cm para polera bolsillo)">Polera (Bolsillo/Manga) - 300 DPI, 10x10 cm</option>
@@ -213,16 +300,16 @@
                  <option value="300 DPI a tamaño completo (aprox. 8x8 cm para gorra)">Gorra (Frontal) - 300 DPI, 8x8 cm</option>
                  <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="formatoTamanoCustom" class="hidden mt-2" placeholder="Especifica el tamaño y resolución (ej: 300 DPI a 15x20 cm)">
+            <input type="text" id="formatoTamanoCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica el tamaño y resolución (ej: 300 DPI a 15x20 cm)">
         </div>
 
         <div class="form-group">
             <label for="consideracionesRestricciones">8. Consideraciones Finales: Elementos que NO quieres que aparezcan</label>
-            <input type="text" id="consideracionesRestricciones" placeholder="Ej: No usar tonos fluorescentes, evitar imágenes de calaveras">
+            <input type="text" id="consideracionesRestricciones" placeholder="Ej: No usar tonos fluorescentes, evitar imágenes de calaveras" class="w-full p-2 border rounded">
         </div>
         <div class="form-group">
             <label for="consideracionesUbicacion">Ubicación del diseño en la polera</label>
-            <select id="consideracionesUbicacion" onchange="toggleCustomInput('consideracionesUbicacion', 'consideracionesUbicacionCustom')">
+            <select id="consideracionesUbicacion" onchange="toggleCustomInput('consideracionesUbicacion', 'consideracionesUbicacionCustom')" class="w-full p-2 border rounded">
                 <option value="">Selecciona una ubicación</option>
                 <option value="frontal (centro)">Frontal (centro)</option>
                 <option value="frontal (pequeño, lado izquierdo)">Frontal (pequeño, lado izquierdo)</option>
@@ -232,11 +319,11 @@
                 <option value="frontal y espalda">Frontal y espalda</option>
                 <option value="otro">Otro/Personalizado</option>
             </select>
-            <input type="text" id="consideracionesUbicacionCustom" class="hidden mt-2" placeholder="Especifica la ubicación">
+            <input type="text" id="consideracionesUbicacionCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica la ubicación">
         </div>
         <div class="form-group">
             <label for="consideracionesElaboracion">¿Quieres un diseño simple o elaborado?</label>
-            <select id="consideracionesElaboracion">
+            <select id="consideracionesElaboracion" class="w-full p-2 border rounded">
                 <option value="">Selecciona el nivel de elaboración</option>
                 <option value="simple">Simple</option>
                 <option value="elaborado">Elaborado</option>
@@ -244,11 +331,11 @@
             </select>
         </div>
 
-        <button onclick="generatePrompt()">Generar Prompt</button>
+        <button onclick="generatePrompt()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generar Prompt</button>
 
         <h2 class="text-xl font-bold mt-6 mb-2">Prompt Generado:</h2>
-        <pre id="generatedPrompt"></pre>
-        <button id="copyPromptButton" onclick="copyPrompt()">Copiar Prompt</button>
+        <pre id="generatedPrompt" class="w-full p-4 bg-gray-200 rounded font-mono whitespace-pre-wrap break-words resize-y"></pre>
+        <button id="copyPromptButton" onclick="copyPrompt()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4">Copiar Prompt</button>
     </div>
 
     <script>
@@ -294,14 +381,12 @@
             const conceptoEmocion = getValue('conceptoEmocion', 'conceptoEmocionCustom');
             const estiloGeneral = getValue('estiloGeneral', 'estiloGeneralCustom');
             const estiloTendencia = getInputValue('estiloTendencia');
-            const coloresUsar = getInputValue('coloresUsar');
-            const coloresEmociones = getInputValue('coloresEmociones');
+            const coloresUsar = getValue('coloresUsar', 'coloresUsarCustom');
+            const coloresEmociones = getValue('coloresEmociones', 'coloresEmocionesCustom');
             const estiloElementos = getInputValue('estiloElementos');
             const tipografiaTipo = getValue('tipografiaTipo', 'tipografiaTipoCustom');
             const tecnicaImpresion = getValue('tecnicaImpresion', 'tecnicaImpresionCustom');
-            const tecnicaPolera = getInputValue('tecnicaPolera');
-            const formatoTamano = getValue('formatoTamano', 'formatoTamanoCustom'); // Usar getValue para el nuevo select+input
-            const formatoArchivo = getValue('formatoArchivo', 'formatoArchivoCustom');
+            const formatoTamano = getValue('formatoTamano', 'formatoTamanoCustom');
             const restricciones = getInputValue('consideracionesRestricciones');
             const ubicacion = getValue('consideracionesUbicacion', 'consideracionesUbicacionCustom');
             const elaboracion = getInputValue('consideracionesElaboracion');
@@ -367,31 +452,21 @@
             }
 
 
-            if (tecnicaImpresion || tecnicaPolera) {
+            if (tecnicaImpresion) {
                 prompt += ` El diseño debe estar optimizado para impresión`;
                  if (tecnicaImpresion) {
                      prompt += ` en ${tecnicaImpresion}`;
-                 }
-                 if (tecnicaPolera) {
-                     prompt += ` sobre poleras de ${tecnicaPolera}`;
                  }
                  prompt += `.`; // Cierra la frase de impresión
             }
 
 
-            if (formatoTamano || formatoArchivo) {
+            if (formatoTamano) {
                 prompt += ` Debe crearse`;
                  if (formatoTamano) {
                      prompt += ` a ${formatoTamano}`;
                  }
-                 // Assuming CMYK is standard for print, add it if size/resolution is specified
-                 if (formatoTamano || formatoArchivo) {
-                      prompt += ` en modo CMYK`;
-                 }
-                 if (formatoArchivo) {
-                     prompt += ` y en formato ${formatoArchivo}`;
-                 }
-                 prompt += `.`; // Cierra la frase de formato
+                 prompt += `. Debe crearse en modo CMYK.`; // Añadido CMYK como parte de esta frase
             }
 
 
@@ -423,16 +498,13 @@
         }
 
         // Función para copiar el prompt al portapapeles
-        function copyPrompt() {
+        async function copyPrompt() { // Usar async para navigator.clipboard
             const promptTextarea = document.getElementById('generatedPrompt');
-            // Seleccionar el texto dentro del textarea
-            promptTextarea.select();
-            promptTextarea.setSelectionRange(0, 99999); // Para dispositivos móviles
+            const promptText = promptTextarea.textContent; // Obtener el texto directamente
 
-            // Intentar copiar el texto
             try {
-                navigator.clipboard.writeText(promptTextarea.textContent);
-                alert('¡Prompt copiado al portapapeles!'); // Usar alert temporalmente, considerar un mensaje menos intrusivo
+                await navigator.clipboard.writeText(promptText); // Usar await
+                alert('¡Prompt copiado al portapapeles!');
             } catch (err) {
                 console.error('Error al copiar el prompt: ', err);
                 alert('No se pudo copiar el prompt. Por favor, cópialo manualmente.');
@@ -446,8 +518,9 @@
             toggleCustomInput('estiloGeneral', 'estiloGeneralCustom');
             toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom');
             toggleCustomInput('tecnicaImpresion', 'tecnicaImpresionCustom');
-            toggleCustomInput('formatoArchivo', 'formatoArchivoCustom');
-            toggleCustomInput('formatoTamano', 'formatoTamanoCustom'); // Inicializar el nuevo campo
+            toggleCustomInput('formatoTamano', 'formatoTamanoCustom');
+            toggleCustomInput('coloresUsar', 'coloresUsarCustom');
+            toggleCustomInput('coloresEmociones', 'coloresEmocionesCustom');
             toggleCustomInput('consideracionesUbicacion', 'consideracionesUbicacionCustom');
         });
 
