@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Prompts para Diseño de Poleras</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo básico para el cuerpo con fondo colorido */
+        body {
+            font-family: "Inter", sans-serif;
+            color: #333;
+            line-height: 1.6;
+            /* Fondo degradado colorido */
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4, #ffecd2, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite; /* Animación para el degradado */
+            min-height: 100vh; /* Asegura que el degradado cubra toda la altura */
+            padding: 20px; /* Añade padding al cuerpo */
+        }
+
+        /* Animación para el degradado */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Estilo para el contenedor principal */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* Estilo para los grupos de formulario */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        /* Estilo para las etiquetas */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        /* Estilo para los select y input de texto */
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+        }
+        /* Estilo para el área de texto de prompt */
+        #generatedPrompt {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #e9e9e9;
+            margin-top: 10px; /* Ajusta el margen superior */
+            font-family: monospace; /* Fuente monoespaciada para el prompt */
+            white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
+            word-wrap: break-word; /* Rompe palabras largas si es necesario */
+            resize: vertical; /* Permite redimensionar verticalmente */
+        }
+        /* Estilo para el botón */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Añade margen superior al botón */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+         /* Estilo para el botón de copiar */
+        #copyPromptButton {
+            background-color: #28a745; /* Color verde */
+            margin-left: 10px; /* Espacio a la izquierda del botón Generar */
+        }
+        #copyPromptButton:hover {
+            background-color: #218838;
+        }
+        /* Clase para ocultar elementos */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-6 text-center">Generador de Prompts para Diseño de Poleras</h1>
+
+        <div class="form-group">
+            <label for="conceptoMensaje">1. Concepto del Diseño: Mensaje o idea central</label>
+            <textarea id="conceptoMensaje" rows="3" placeholder="Ej: La importancia del reciclaje, Amor por la naturaleza"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="conceptoEmocion">Emoción a evocar</label>
+            <select id="conceptoEmocion" onchange="toggleCustomInput('conceptoEmocion', 'conceptoEmocionCustom')">
+                <option value="">Selecciona una emoción</option>
+                <option value="alegría">Alegría</option>
+                <option value="rebeldía">Rebeldía</option>
+                <option value="nostalgia">Nostalgia</option>
+                <option value="motivación">Motivación</option>
+                <option value="calma">Calma</option>
+                <option value="energía">Energía</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="conceptoEmocionCustom" class="hidden mt-2" placeholder="Especifica la emoción">
+        </div>
+
+        <div class="form-group">
+            <label for="publicoObjetivo">2. Público Objetivo: Describe a quién va dirigido el diseño (edad, intereses, estilo de vida, etc.)</label>
+            <textarea id="publicoObjetivo" rows="3" placeholder="Ej: Jóvenes entre 18 y 25 años, interesados en videojuegos retro y cultura pop, estilo urbano"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="estiloGeneral">3. Estilo Visual: Estilo general</label>
+            <select id="estiloGeneral" onchange="toggleCustomInput('estiloGeneral', 'estiloGeneralCustom')">
+                <option value="">Selecciona un estilo</option>
+                <option value="minimalista">Minimalista</option>
+                <option value="retro">Retro</option>
+                <option value="maximalista">Maximalista</option>
+                <option value="arte digital">Arte Digital</option>
+                <option value="geocultural">Geocultural</option>
+                <option value="ilustración">Ilustración</option>
+                <option value="tipográfico">Tipográfico</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="estiloGeneralCustom" class="hidden mt-2" placeholder="Especifica el estilo general">
+        </div>
+        <div class="form-group">
+            <label for="estiloElementos">Elementos a incluir (ilustraciones, frases, logotipos, símbolos, etc.)</label>
+            <input type="text" id="estiloElementos" placeholder="Ej: Una ilustración de un gato espacial, la frase 'Explora lo desconocido', un logo pequeño">
+        </div>
+         <div class="form-group">
+            <label for="estiloTendencia">Tendencia específica del 2025 (si aplica)</label>
+            <input type="text" id="estiloTendencia" placeholder="Ej: Estilo 'Cyberpunk Revival', uso de gradientes iridiscentes">
+        </div>
+
+        <div class="form-group">
+            <label for="coloresUsar">4. Colores: Colores a usar (nombra los colores o describe la paleta)</label>
+            <input type="text" id="coloresUsar" placeholder="Ej: Paleta de colores tierra (beige, marrón, verde oliva), Azul eléctrico y rosa neón">
+        </div>
+        <div class="form-group">
+            <label for="coloresEmociones">Emociones o sensaciones que deberían transmitir los colores</label>
+            <input type="text" id="coloresEmociones" placeholder="Ej: Calma y conexión con la naturaleza, Energía y modernidad">
+        </div>
+
+        <div class="form-group">
+            <label for="tipografiaTipo">5. Tipografía: Tipo de fuente o combinación</label>
+            <select id="tipografiaTipo" onchange="toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom')">
+                <option value="">Selecciona un tipo de fuente</option>
+                <option value="formal">Formal (Serif/Sans-serif clásica)</option>
+                <option value="divertida">Divertida (Handwritten/Display)</option>
+                <option value="retro">Retro (Vintage/Script)</option>
+                <option value="manuscrita">Manuscrita</option>
+                <option value="moderna">Moderna (Geometric/Minimal)</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="tipografiaTipoCustom" class="hidden mt-2" placeholder="Especifica el tipo o combinación de fuente">
+        </div>
+
+        <div class="form-group">
+            <label for="tecnicaImpresion">6. Técnica de Impresión: Técnica que se usará</label>
+            <select id="tecnicaImpresion" onchange="toggleCustomInput('tecnicaImpresion', 'tecnicaImpresionCustom')">
+                <option value="">Selecciona una técnica</option>
+                <option value="DTG">DTG (Impresión Directa a Prenda)</option>
+                <option value="serigrafía">Serigrafía</option>
+                <option value="vinilo">Vinilo Textil</option>
+                <option value="sublimación">Sublimación</option>
+                <option value="bordado">Bordado</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="tecnicaImpresionCustom" class="hidden mt-2" placeholder="Especifica la técnica de impresión">
+        </div>
+        <div class="form-group">
+            <label for="tecnicaPolera">Tipo de polera (material, color base, textura)</label>
+            <input type="text" id="tecnicaPolera" placeholder="Ej: Polera 100% algodón, color blanco, textura suave; Polera de poliéster, color gris melange">
+        </div>
+
+        <div class="form-group">
+            <label for="formatoArchivo">7. Formato del Archivo: Formato final requerido</label>
+            <select id="formatoArchivo" onchange="toggleCustomInput('formatoArchivo', 'formatoArchivoCustom')">
+                <option value="">Selecciona un formato</option>
+                <option value=".ai">.ai (Adobe Illustrator)</option>
+                <option value=".psd">.psd (Adobe Photoshop)</option>
+                <option value=".png">.png (con transparencia)</option>
+                <option value=".jpg">.jpg (sin transparencia)</option>
+                <option value=".svg">.svg (Gráficos Vectoriales Escalables)</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="formatoArchivoCustom" class="hidden mt-2" placeholder="Especifica el formato de archivo">
+        </div>
+        <div class="form-group">
+            <label for="formatoTamano">Tamaño y resolución requerida</label>
+            <select id="formatoTamano" onchange="toggleCustomInput('formatoTamano', 'formatoTamanoCustom')">
+                 <option value="">Selecciona un tamaño o especifica</option>
+                 <option value="300 DPI a tamaño completo (aprox. 30x40 cm para polera frontal)">Polera (Frontal/Espalda) - 300 DPI, 30x40 cm</option>
+                 <option value="300 DPI a tamaño completo (aprox. 10x10 cm para polera bolsillo)">Polera (Bolsillo/Manga) - 300 DPI, 10x10 cm</option>
+                 <option value="300 DPI a tamaño completo (aprox. 25x30 cm para polera infantil)">Polera Infantil - 300 DPI, 25x30 cm</option>
+                 <option value="300 DPI a tamaño completo (aprox. 20x25 cm para taza)">Taza (Área de impresión) - 300 DPI, 20x25 cm</option>
+                 <option value="300 DPI a tamaño completo (aprox. 8x8 cm para gorra)">Gorra (Frontal) - 300 DPI, 8x8 cm</option>
+                 <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="formatoTamanoCustom" class="hidden mt-2" placeholder="Especifica el tamaño y resolución (ej: 300 DPI a 15x20 cm)">
+        </div>
+
+        <div class="form-group">
+            <label for="consideracionesRestricciones">8. Consideraciones Finales: Elementos que NO quieres que aparezcan</label>
+            <input type="text" id="consideracionesRestricciones" placeholder="Ej: No usar tonos fluorescentes, evitar imágenes de calaveras">
+        </div>
+        <div class="form-group">
+            <label for="consideracionesUbicacion">Ubicación del diseño en la polera</label>
+            <select id="consideracionesUbicacion" onchange="toggleCustomInput('consideracionesUbicacion', 'consideracionesUbicacionCustom')">
+                <option value="">Selecciona una ubicación</option>
+                <option value="frontal (centro)">Frontal (centro)</option>
+                <option value="frontal (pequeño, lado izquierdo)">Frontal (pequeño, lado izquierdo)</option>
+                <option value="espalda (grande)">Espalda (grande)</option>
+                <option value="manga izquierda">Manga izquierda</option>
+                <option value="manga derecha">Manga derecha</option>
+                <option value="frontal y espalda">Frontal y espalda</option>
+                <option value="otro">Otro/Personalizado</option>
+            </select>
+            <input type="text" id="consideracionesUbicacionCustom" class="hidden mt-2" placeholder="Especifica la ubicación">
+        </div>
+        <div class="form-group">
+            <label for="consideracionesElaboracion">¿Quieres un diseño simple o elaborado?</label>
+            <select id="consideracionesElaboracion">
+                <option value="">Selecciona el nivel de elaboración</option>
+                <option value="simple">Simple</option>
+                <option value="elaborado">Elaborado</option>
+                <option value="moderado">Moderado</option>
+            </select>
+        </div>
+
+        <button onclick="generatePrompt()">Generar Prompt</button>
+
+        <h2 class="text-xl font-bold mt-6 mb-2">Prompt Generado:</h2>
+        <pre id="generatedPrompt"></pre>
+        <button id="copyPromptButton" onclick="copyPrompt()">Copiar Prompt</button>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar el input de texto personalizado
+        function toggleCustomInput(selectId, customInputId) {
+            const selectElement = document.getElementById(selectId);
+            const customInputElement = document.getElementById(customInputId);
+            if (selectElement.value === 'otro') {
+                customInputElement.classList.remove('hidden');
+                customInputElement.required = true; // Hacer el campo requerido si se selecciona 'otro'
+            } else {
+                customInputElement.classList.add('hidden');
+                customInputElement.required = false;
+                customInputElement.value = ''; // Limpiar el valor cuando se oculta
+            }
+        }
+
+        // Función para obtener el valor de un selector o su input personalizado
+        function getValue(selectId, customInputId) {
+            const selectElement = document.getElementById(selectId);
+            const customInputElement = document.getElementById(customInputId);
+            if (selectElement && selectElement.value === 'otro' && customInputElement) {
+                return customInputElement.value.trim();
+            } else if (selectElement && selectElement.value !== '') {
+                return selectElement.value.trim();
+            } else {
+                return ''; // Retorna vacío si no hay selección o texto personalizado
+            }
+        }
+
+         // Función para obtener el valor de un input de texto o textarea
+        function getInputValue(elementId) {
+            const element = document.getElementById(elementId);
+            return element ? element.value.trim() : '';
+        }
+
+
+        // Función para generar el prompt
+        function generatePrompt() {
+            // Recolectar valores de los campos
+            const publicoObjetivo = getInputValue('publicoObjetivo');
+            const conceptoMensaje = getInputValue('conceptoMensaje');
+            const conceptoEmocion = getValue('conceptoEmocion', 'conceptoEmocionCustom');
+            const estiloGeneral = getValue('estiloGeneral', 'estiloGeneralCustom');
+            const estiloTendencia = getInputValue('estiloTendencia');
+            const coloresUsar = getInputValue('coloresUsar');
+            const coloresEmociones = getInputValue('coloresEmociones');
+            const estiloElementos = getInputValue('estiloElementos');
+            const tipografiaTipo = getValue('tipografiaTipo', 'tipografiaTipoCustom');
+            const tecnicaImpresion = getValue('tecnicaImpresion', 'tecnicaImpresionCustom');
+            const tecnicaPolera = getInputValue('tecnicaPolera');
+            const formatoTamano = getValue('formatoTamano', 'formatoTamanoCustom'); // Usar getValue para el nuevo select+input
+            const formatoArchivo = getValue('formatoArchivo', 'formatoArchivoCustom');
+            const restricciones = getInputValue('consideracionesRestricciones');
+            const ubicacion = getValue('consideracionesUbicacion', 'consideracionesUbicacionCustom');
+            const elaboracion = getInputValue('consideracionesElaboracion');
+
+            // Construir el prompt usando el template
+            let prompt = `Crea un diseño de polera`;
+
+            if (publicoObjetivo) {
+                prompt += ` dirigido a ${publicoObjetivo}`;
+            }
+
+            if (conceptoMensaje || conceptoEmocion) {
+                prompt += ` que transmita`;
+                if (conceptoMensaje) {
+                    prompt += ` "${conceptoMensaje}"`;
+                }
+                if (conceptoMensaje && conceptoEmocion) {
+                    prompt += ` y evoque`;
+                } else if (conceptoEmocion) {
+                     prompt += ` la emoción de`;
+                }
+                 if (conceptoEmocion) {
+                    prompt += ` ${conceptoEmocion}`;
+                }
+            }
+             prompt += `.`; // Cierra la primera frase
+
+
+            if (estiloGeneral) {
+                prompt += ` El estilo visual debe ser ${estiloGeneral}`;
+            }
+            if (estiloTendencia) {
+                prompt += `, inspirado en tendencias como ${estiloTendencia}`;
+            }
+             prompt += `.`; // Cierra la frase de estilo
+
+
+            if (coloresUsar) {
+                 prompt += ` Usa una paleta de colores ${coloresUsar}`;
+            }
+            if (coloresEmociones) {
+                 if (coloresUsar) {
+                    prompt += ` que evoquen ${coloresEmociones}`;
+                 } else {
+                    prompt += ` Usa colores que evoquen ${coloresEmociones}`;
+                 }
+            }
+             prompt += `.`; // Cierra la frase de colores
+
+            if (estiloElementos) {
+                 prompt += ` El diseño debe incluir ${estiloElementos}`;
+            }
+
+            if (tipografiaTipo) {
+                 if (estiloElementos) {
+                     prompt += `, con una tipografía ${tipografiaTipo}`;
+                 } else {
+                     prompt += ` Usa una tipografía ${tipografiaTipo}`;
+                 }
+                 prompt += ` que combine bien con el estilo general.`; // Cierra la frase de elementos/tipografía
+            } else if (estiloElementos) {
+                 prompt += `.`; // Cierra la frase de elementos si no hay tipografía
+            }
+
+
+            if (tecnicaImpresion || tecnicaPolera) {
+                prompt += ` El diseño debe estar optimizado para impresión`;
+                 if (tecnicaImpresion) {
+                     prompt += ` en ${tecnicaImpresion}`;
+                 }
+                 if (tecnicaPolera) {
+                     prompt += ` sobre poleras de ${tecnicaPolera}`;
+                 }
+                 prompt += `.`; // Cierra la frase de impresión
+            }
+
+
+            if (formatoTamano || formatoArchivo) {
+                prompt += ` Debe crearse`;
+                 if (formatoTamano) {
+                     prompt += ` a ${formatoTamano}`;
+                 }
+                 // Assuming CMYK is standard for print, add it if size/resolution is specified
+                 if (formatoTamano || formatoArchivo) {
+                      prompt += ` en modo CMYK`;
+                 }
+                 if (formatoArchivo) {
+                     prompt += ` y en formato ${formatoArchivo}`;
+                 }
+                 prompt += `.`; // Cierra la frase de formato
+            }
+
+
+            if (restricciones) {
+                prompt += ` Evita ${restricciones}.`;
+            }
+
+            if (ubicacion) {
+                prompt += ` El diseño debe colocarse en ${ubicacion}`;
+            }
+
+            if (elaboracion) {
+                 if (ubicacion) {
+                     prompt += ` y puede ser ${elaboracion}`;
+                 } else {
+                     prompt += ` El diseño puede ser ${elaboracion}`;
+                 }
+                 prompt += `, pero siempre manteniendo equilibrio visual y contraste para legibilidad.`; // Cierra la frase de ubicación/elaboración
+            } else if (ubicacion) {
+                 prompt += `.`; // Cierra la frase de ubicación si no hay elaboración
+            } else {
+                 // If neither location nor elaboration is specified, add the concluding sentence about legibility
+                 prompt += ` Asegura que el diseño mantenga equilibrio visual y contraste para legibilidad.`;
+            }
+
+
+            // Mostrar el prompt generado en el área de texto
+            document.getElementById('generatedPrompt').textContent = prompt.trim(); // Usar textContent y trim()
+        }
+
+        // Función para copiar el prompt al portapapeles
+        function copyPrompt() {
+            const promptTextarea = document.getElementById('generatedPrompt');
+            // Seleccionar el texto dentro del textarea
+            promptTextarea.select();
+            promptTextarea.setSelectionRange(0, 99999); // Para dispositivos móviles
+
+            // Intentar copiar el texto
+            try {
+                navigator.clipboard.writeText(promptTextarea.textContent);
+                alert('¡Prompt copiado al portapapeles!'); // Usar alert temporalmente, considerar un mensaje menos intrusivo
+            } catch (err) {
+                console.error('Error al copiar el prompt: ', err);
+                alert('No se pudo copiar el prompt. Por favor, cópialo manualmente.');
+            }
+        }
+
+
+        // Inicializar la visibilidad de los campos personalizados al cargar la página
+        document.addEventListener('DOMContentLoaded', (event) => {
+            toggleCustomInput('conceptoEmocion', 'conceptoEmocionCustom');
+            toggleCustomInput('estiloGeneral', 'estiloGeneralCustom');
+            toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom');
+            toggleCustomInput('tecnicaImpresion', 'tecnicaImpresionCustom');
+            toggleCustomInput('formatoArchivo', 'formatoArchivoCustom');
+            toggleCustomInput('formatoTamano', 'formatoTamanoCustom'); // Inicializar el nuevo campo
+            toggleCustomInput('consideracionesUbicacion', 'consideracionesUbicacionCustom');
+        });
+
+    </script>
+</body>
+</html>
