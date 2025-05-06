@@ -110,25 +110,33 @@
         <div class="form-group">
             <label for="conceptoEmocion">Emoción a evocar</label>
             <select id="conceptoEmocion" onchange="toggleCustomInput('conceptoEmocion', 'conceptoEmocionCustom')" class="w-full p-2 border rounded">
-    <option value="">Selecciona una emoción</option>
-    <option value="alegría y diversión">Alegría y diversión</option>
-    <option value="rebeldía y actitud">Rebeldía y actitud</option>
-    <option value="nostalgia y vintage">Nostalgia y vintage</option>
-    <option value="motivación e inspiración">Motivación e inspiración</option>
-    <option value="calma y serenidad">Calma y serenidad</option>
-    <option value="energía y dinamismo">Energía y dinamismo</option>
-    <option value="misterio e intriga">Misterio e intriga</option>
-    <option value="empoderamiento">Empoderamiento</option>
-    <option value="humor y sarcasmo">Humor y sarcasmo</option>
-    <option value="amor y conexión">Amor y conexión</option>
-    <option value="aventura y exploración">Aventura y exploración</option>
-    <option value="lujo y exclusividad">Lujo y exclusividad</option>
-    <option value="sostenibilidad y ecología">Sostenibilidad y ecología</option>
-    <option value="tecnología y futurismo">Tecnología y futurismo</option>
-    <option value="arte y creatividad">Arte y creatividad</option>
-    <option value="deporte y actividad">Deporte y actividad</option>
-    <option value="cultura pop">Cultura pop</option>
-    <option value="otro">Otro/Personalizado</option>
+                <option value="">Selecciona una emoción</option>
+                <optgroup label="Emociones Positivas">
+                    <option value="alegría y diversión">Alegría y diversión</option>
+                    <option value="motivación e inspiración">Motivación e inspiración</option>
+                    <option value="amor y conexión">Amor y conexión</option>
+                    <option value="empoderamiento">Empoderamiento</option>
+                </optgroup>
+                <optgroup label="Estilos de Vida">
+                    <option value="rebeldía y actitud">Rebeldía y actitud</option>
+                    <option value="aventura y exploración">Aventura y exploración</option>
+                    <option value="deporte y actividad">Deporte y actividad</option>
+                    <option value="lujo y exclusividad">Lujo y exclusividad</option>
+                </optgroup>
+                <optgroup label="Estados Emocionales">
+                    <option value="calma y serenidad">Calma y serenidad</option>
+                    <option value="energía y dinamismo">Energía y dinamismo</option>
+                    <option value="nostalgia y vintage">Nostalgia y vintage</option>
+                    <option value="misterio e intriga">Misterio e intriga</option>
+                </optgroup>
+                <optgroup label="Tendencias Contemporáneas">
+                    <option value="sostenibilidad y ecología">Sostenibilidad y ecología</option>
+                    <option value="tecnología y futurismo">Tecnología y futurismo</option>
+                    <option value="arte y creatividad">Arte y creatividad</option>
+                    <option value="cultura pop">Cultura pop</option>
+                    <option value="humor y sarcasmo">Humor y sarcasmo</option>
+                </optgroup>
+                <option value="otro">Otro/Personalizado</option>
             </select>
             <input type="text" id="conceptoEmocionCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica la emoción">
         </div>
@@ -141,28 +149,39 @@
         <div class="form-group">
             <label for="estiloGeneral">3. Estilo Visual: Estilo general</label>
             <select id="estiloGeneral" onchange="toggleCustomInput('estiloGeneral', 'estiloGeneralCustom')" class="w-full p-2 border rounded">
-    <option value="">Selecciona un estilo</option>
-    <option value="minimalista y limpio">Minimalista y limpio</option>
-    <option value="retro y vintage">Retro y vintage</option>
-    <option value="maximalista y detallado">Maximalista y detallado</option>
-    <option value="arte digital ilustrado">Arte digital ilustrado</option>
-    <option value="geométrico y abstracto">Geométrico y abstracto</option>
-    <option value="grunge y texturizado">Grunge y texturizado</option>
-    <option value="tipográfico y de letras">Tipográfico y de letras</option>
-    <option value="comic y cartoon">Comic y cartoon</option>
-    <option value="cyberpunk y futurista">Cyberpunk y futurista</option>
-    <option value="kawaii y cute">Kawaii y cute</option>
-    <option value="streetwear y urbano">Streetwear y urbano</option>
-    <option value="boho y hippie">Boho y hippie</option>
-    <option value="skate y surf">Skate y surf</option>
-    <option value="gótico y oscuro">Gótico y oscuro</option>
-    <option value="anime y manga">Anime y manga</option>
-    <option value="pixel art">Pixel art</option>
-    <option value="collage y mixto">Collage y mixto</option>
-    <option value="realista y detallado">Realista y detallado</option>
-    <option value="low poly">Low poly</option>
-    <option value="doodle y garabatos">Doodle y garabatos</option>
-    <option value="otro">Otro/Personalizado</option>
+                <option value="">Selecciona un estilo</option>
+                <optgroup label="Estilos Clásicos">
+                    <option value="minimalista y limpio">Minimalista y limpio</option>
+                    <option value="retro y vintage">Retro y vintage</option>
+                    <option value="tipográfico y de letras">Tipográfico y de letras</option>
+                    <option value="realista y detallado">Realista y detallado</option>
+                </optgroup>
+                <optgroup label="Estilos Urbanos">
+                    <option value="streetwear y urbano">Streetwear y urbano</option>
+                    <option value="grunge y texturizado">Grunge y texturizado</option>
+                    <option value="skate y surf">Skate y surf</option>
+                    <option value="grafiti y street art">Grafiti y street art</option>
+                </optgroup>
+                <optgroup label="Estilos Modernos">
+                    <option value="arte digital ilustrado">Arte digital ilustrado</option>
+                    <option value="geométrico y abstracto">Geométrico y abstracto</option>
+                    <option value="maximalista y detallado">Maximalista y detallado</option>
+                    <option value="collage y mixto">Collage y mixto</option>
+                </optgroup>
+                <optgroup label="Estilos Temáticos">
+                    <option value="cyberpunk y futurista">Cyberpunk y futurista</option>
+                    <option value="gótico y oscuro">Gótico y oscuro</option>
+                    <option value="anime y manga">Anime y manga</option>
+                    <option value="comic y cartoon">Comic y cartoon</option>
+                    <option value="kawaii y cute">Kawaii y cute</option>
+                    <option value="pixel art">Pixel art</option>
+                    <option value="low poly">Low poly</option>
+                </optgroup>
+                <optgroup label="Estilos Alternativos">
+                    <option value="boho y hippie">Boho y hippie</option>
+                    <option value="doodle y garabatos">Doodle y garabatos</option>
+                </optgroup>
+                <option value="otro">Otro/Personalizado</option>
             </select>
             <input type="text" id="estiloGeneralCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica el estilo general">
         </div>
@@ -178,60 +197,69 @@
         <div class="form-group">
             <label for="coloresUsar">4. Colores: Colores a usar (nombra los colores o describe la paleta)</label>
              <select id="coloresUsar" onchange="toggleCustomInput('coloresUsar', 'coloresUsarCustom')" class="w-full p-2 border rounded">
-    <option value="">Selecciona una paleta de colores o especifica</option>
-    <!-- Paletas básicas -->
-    <option value="Monocromática (variaciones de un solo tono)">Monocromática</option>
-    <option value="Complementaria (colores opuestos en la rueda)">Complementaria</option>
-    <option value="Análoga (colores vecinos en la rueda)">Análoga</option>
-    <option value="Triádica (tres colores equidistantes)">Triádica</option>
-    
-    <!-- Paletas por estilo -->
-    <option value="Neón (fucsia, cian, amarillo neón)">Neón</option>
-    <option value="Pastel (rosa, azul, menta, lila suaves)">Pastel</option>
-    <option value="Tierra (ocre, beige, verde oliva, marrón)">Tierra</option>
-    <option value="Primarios (rojo, azul, amarillo vibrantes)">Primarios</option>
-    <option value="Metálicos (oro, plata, bronce, cobre)">Metálicos</option>
-    <option value="Grises (escala de grises con un acento de color)">Grises con acento</option>
-    
-    <!-- Paletas por tendencia -->
-    <option value="Cyber (morado eléctrico, rosa neón, azul cian)">Cyber</option>
-    <option value="Y2K (rosa brillante, azul cielo, plateado)">Y2K</option>
-    <option value="Dark mode (negro, gris oscuro, con toques neón)">Dark mode</option>
-    <option value="Vaporwave (rosa, morado, azul pastel)">Vaporwave</option>
-    <option value="Retro (mostaza, marrón, naranja quemado)">Retro 70s</option>
-    <option value="Acid (amarillo ácido, verde lima, fucsia)">Acid</option>
-    
-    <!-- Paletas por emoción -->
-    <option value="Energía (rojo, naranja, amarillo vibrantes)">Energía</option>
-    <option value="Calma (azules, verdes suaves, lavanda)">Calma</option>
-    <option value="Lujo (negro, oro, blanco roto)">Lujo</option>
-    <option value="Naturaleza (verdes, marrones, azul cielo)">Naturaleza</option>
-    <option value="Futurista (plateado, morado, azul eléctrico)">Futurista</option>
-    <option value="otro">Otro/Personalizado</option>
+                <option value="">Selecciona una paleta de colores o especifica</option>
+                <optgroup label="Paletas Básicas">
+                    <option value="Monocromática (variaciones de un solo tono)">Monocromática</option>
+                    <option value="Complementaria (colores opuestos en la rueda)">Complementaria</option>
+                    <option value="Análoga (colores vecinos en la rueda)">Análoga</option>
+                    <option value="Triádica (tres colores equidistantes)">Triádica</option>
+                </optgroup>
+                <optgroup label="Paletas por Estilo">
+                    <option value="Neón (fucsia, cian, amarillo neón)">Neón</option>
+                    <option value="Pastel (rosa, azul, menta, lila suaves)">Pastel</option>
+                    <option value="Tierra (ocre, beige, verde oliva, marrón)">Tierra</option>
+                    <option value="Primarios (rojo, azul, amarillo vibrantes)">Primarios</option>
+                    <option value="Metálicos (oro, plata, bronce, cobre)">Metálicos</option>
+                    <option value="Grises (escala de grises con un acento de color)">Grises con acento</option>
+                </optgroup>
+                <optgroup label="Paletas por Tendencias">
+                    <option value="Cyber (morado eléctrico, rosa neón, azul cian)">Cyber</option>
+                    <option value="Y2K (rosa brillante, azul cielo, plateado)">Y2K</option>
+                    <option value="Dark mode (negro, gris oscuro, con toques neón)">Dark mode</option>
+                    <option value="Vaporwave (rosa, morado, azul pastel)">Vaporwave</option>
+                    <option value="Retro (mostaza, marrón, naranja quemado)">Retro 70s</option>
+                    <option value="Acid (amarillo ácido, verde lima, fucsia)">Acid</option>
+                </optgroup>
+                <optgroup label="Paletas por Emoción">
+                    <option value="Energía (rojo, naranja, amarillo vibrantes)">Energía</option>
+                    <option value="Calma (azules, verdes suaves, lavanda)">Calma</option>
+                    <option value="Lujo (negro, oro, blanco roto)">Lujo</option>
+                    <option value="Naturaleza (verdes, marrones, azul cielo)">Naturaleza</option>
+                    <option value="Futurista (plateado, morado, azul eléctrico)">Futurista</option>
+                </optgroup>
+                <option value="otro">Otro/Personalizado</option>
             </select>
             <input type="text" id="coloresUsarCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica los colores (ej: Azul eléctrico y rosa neón)">
         </div>
         <div class="form-group">
             <label for="coloresEmociones">Emociones o sensaciones que deberían transmitir los colores</label>
              <select id="coloresEmociones" onchange="toggleCustomInput('coloresEmociones', 'coloresEmocionesCustom')" class="w-full p-2 border rounded">
-    <option value="">Selecciona una emoción o especifica</option>
-    <option value="Alegría y optimismo (amarillos, naranjas)">Alegría y optimismo</option>
-    <option value="Calma y serenidad (azules, verdes suaves)">Calma y serenidad</option>
-    <option value="Energía y pasión (rojos, naranjas intensos)">Energía y pasión</option>
-    <option value="Misterio e intriga (morados, negros)">Misterio e intriga</option>
-    <option value="Elegancia y sofisticación (negro, blanco, dorado)">Elegancia y sofisticación</option>
-    <option value="Naturaleza y frescura (verdes, marrones)">Naturaleza y frescura</option>
-    <option value="Rebeldía y audacia (neones, contrastes fuertes)">Rebeldía y audacia</option>
-    <option value="Confianza y estabilidad (azules profundos)">Confianza y estabilidad</option>
-    <option value="Creatividad e innovación (combinaciones inusuales)">Creatividad e innovación</option>
-    <option value="Diversión y juventud (colores brillantes)">Diversión y juventud</option>
-    <option value="Lujo y exclusividad (metálicos, tonos profundos)">Lujo y exclusividad</option>
-    <option value="Nostalgia y retro (tonos sepia, desaturados)">Nostalgia y retro</option>
-    <option value="Futurismo y tecnología (azules eléctricos, plateados)">Futurismo y tecnología</option>
-    <option value="Romance y delicadeza (rosas, pasteles)">Romance y delicadeza</option>
-    <option value="Poder y fuerza (rojos, negros)">Poder y fuerza</option>
-    <option value="Ecología y sostenibilidad (verdes, marrones)">Ecología y sostenibilidad</option>
-    <option value="otro">Otro/Personalizado</option>
+                <option value="">Selecciona una emoción o especifica</option>
+                <optgroup label="Emociones Básicas">
+                    <option value="Alegría y optimismo (amarillos, naranjas)">Alegría y optimismo</option>
+                    <option value="Calma y serenidad (azules, verdes suaves)">Calma y serenidad</option>
+                    <option value="Energía y pasión (rojos, naranjas intensos)">Energía y pasión</option>
+                    <option value="Misterio e intriga (morados, negros)">Misterio e intriga</option>
+                </optgroup>
+                <optgroup label="Atributos de Estilo">
+                    <option value="Elegancia y sofisticación (negro, blanco, dorado)">Elegancia y sofisticación</option>
+                    <option value="Rebeldía y audacia (neones, contrastes fuertes)">Rebeldía y audacia</option>
+                    <option value="Lujo y exclusividad (metálicos, tonos profundos)">Lujo y exclusividad</option>
+                    <option value="Poder y fuerza (rojos, negros)">Poder y fuerza</option>
+                </optgroup>
+                <optgroup label="Ambientes y Contextos">
+                    <option value="Naturaleza y frescura (verdes, marrones)">Naturaleza y frescura</option>
+                    <option value="Futurismo y tecnología (azules eléctricos, plateados)">Futurismo y tecnología</option>
+                    <option value="Nostalgia y retro (tonos sepia, desaturados)">Nostalgia y retro</option>
+                    <option value="Romance y delicadeza (rosas, pasteles)">Romance y delicadeza</option>
+                </optgroup>
+                <optgroup label="Valores Contemporáneos">
+                    <option value="Ecología y sostenibilidad (verdes, marrones)">Ecología y sostenibilidad</option>
+                    <option value="Creatividad e innovación (combinaciones inusuales)">Creatividad e innovación</option>
+                    <option value="Diversión y juventud (colores brillantes)">Diversión y juventud</option>
+                    <option value="Confianza y estabilidad (azules profundos)">Confianza y estabilidad</option>
+                </optgroup>
+                <option value="otro">Otro/Personalizado</option>
             </select>
             <input type="text" id="coloresEmocionesCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica las emociones (ej: Nostalgia y confort)">
         </div>
@@ -239,38 +267,39 @@
         <div class="form-group">
             <label for="tipografiaTipo">5. Tipografía: Tipo de fuente o combinación</label>
             <select id="tipografiaTipo" onchange="toggleCustomInput('tipografiaTipo', 'tipografiaTipoCustom')" class="w-full p-2 border rounded">
-    <option value="">Selecciona un tipo de fuente</option>
-    <!-- Estilos clásicos -->
-    <option value="Serif elegante (Times, Garamond, Georgia)">Serif elegante</option>
-    <option value="Sans-serif limpia (Helvetica, Arial, Futura)">Sans-serif limpia</option>
-    
-    <!-- Estilos modernos -->
-    <option value="Moderno geométrico (Montserrat, Gotham)">Moderno geométrico</option>
-    <option value="Minimalista (Roboto, Open Sans)">Minimalista</option>
-    
-    <!-- Estilos display -->
-    <option value="Bold display (Impact, Bebas Neue)">Bold display</option>
-    <option value="Retro vintage (Cooper Black, Playbill)">Retro vintage</option>
-    <option value="Futurista (Eurostile, Orbitron)">Futurista</option>
-    
-    <!-- Estilos manuscritos -->
-    <option value="Manuscrita elegante (Brush Script, Pacifico)">Manuscrita elegante</option>
-    <option value="Handwritten casual (Comic Sans, Marker Felt)">Handwritten casual</option>
-    <option value="Caligráfica (Edwardian Script, Zapfino)">Caligráfica</option>
-    
-    <!-- Estilos temáticos -->
-    <option value="Gótico (Old English, Blackletter)">Gótico</option>
-    <option value="Grunge (distressed, texturizada)">Grunge</option>
-    <option value="Sci-fi (tecnológica, angular)">Sci-fi</option>
-    <option value="Comic/Manga (anime, comic book)">Comic/Manga</option>
-    <option value="Street art (grafiti, tags)">Street art</option>
-    <option value="Pixel art (8-bit, retro gaming)">Pixel art</option>
-    
-    <!-- Combinaciones -->
-    <option value="Combinación serif + sans-serif">Combinación clásica</option>
-    <option value="Contraste display + manuscrita">Contraste moderno</option>
-    <option value="Mezcla de estilos para collage">Estilo collage</option>
-    <option value="otro">Otro/Personalizado</option>
+                <option value="">Selecciona un tipo de fuente</option>
+                <optgroup label="Familias Clásicas">
+                    <option value="Serif elegante (Times, Garamond, Georgia)">Serif elegante</option>
+                    <option value="Sans-serif limpia (Helvetica, Arial, Futura)">Sans-serif limpia</option>
+                </optgroup>
+                <optgroup label="Estilos Modernos">
+                    <option value="Moderno geométrico (Montserrat, Gotham)">Moderno geométrico</option>
+                    <option value="Minimalista (Roboto, Open Sans)">Minimalista</option>
+                    <option value="Bold display (Impact, Bebas Neue)">Bold display</option>
+                </optgroup>
+                <optgroup label="Estilos Decorativos">
+                    <option value="Retro vintage (Cooper Black, Playbill)">Retro vintage</option>
+                    <option value="Futurista (Eurostile, Orbitron)">Futurista</option>
+                    <option value="Gótico (Old English, Blackletter)">Gótico</option>
+                    <option value="Grunge (distressed, texturizada)">Grunge</option>
+                </optgroup>
+                <optgroup label="Estilos Manuscritos">
+                    <option value="Manuscrita elegante (Brush Script, Pacifico)">Manuscrita elegante</option>
+                    <option value="Handwritten casual (Comic Sans, Marker Felt)">Handwritten casual</option>
+                    <option value="Caligráfica (Edwardian Script, Zapfino)">Caligráfica</option>
+                </optgroup>
+                <optgroup label="Estilos Temáticos">
+                    <option value="Sci-fi (tecnológica, angular)">Sci-fi</option>
+                    <option value="Comic/Manga (anime, comic book)">Comic/Manga</option>
+                    <option value="Street art (grafiti, tags)">Street art</option>
+                    <option value="Pixel art (8-bit, retro gaming)">Pixel art</option>
+                </optgroup>
+                <optgroup label="Combinaciones">
+                    <option value="Combinación serif + sans-serif">Combinación clásica</option>
+                    <option value="Contraste display + manuscrita">Contraste moderno</option>
+                    <option value="Mezcla de estilos para collage">Estilo collage</option>
+                </optgroup>
+                <option value="otro">Otro/Personalizado</option>
             </select>
             <input type="text" id="tipografiaTipoCustom" class="hidden w-full p-2 border rounded mt-2" placeholder="Especifica el tipo o combinación de fuente">
         </div>
